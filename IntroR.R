@@ -47,19 +47,18 @@ library(ggmap)
 # we'll use stamenmap - which is an alternative to google maps (google changed access to their API recently)
 # define the area we want to obtain a map for
 mylocation <- c(-72,41,-69,43)  #corners of a box, lon & lat bottom-left, lon & lat top-right
-mymap <- get_stamenmap(mylocation, zoom=9)
+mymap <- get_stamenmap(mylocation, zoom = 9, crop = FALSE)
+ggmap(mymap)
 
-#myMap <- get_map(location=mylocation, source = "google", maptype = "terrain",
-#                 crop = FALSE, zoom= 8)
+# now add the data
+ggmap(mymap) +
+  geom_point(data = mydata, aes(x=lon,y=lat, size=abundance,color=season)) 
 
-p <- ggmap(myMap) +
-  geom_point(aes(x=lon,y=lat,size=abundance, color = season),
-             data = neus) +
-  #data=filter(neus,comname %in% c("SPINY DOGFISH","ATLANTIC COD"))) +
-  #color = "orange", alpha = 1) + #0.05) +
-  scale_size_area() #+
-#guides(colour = guide_legend(override.aes = list(alpha = 1,
-#                                                  color = "orange")))
-p + facet_wrap(~comname)
+
+  geom_point(data = filter(mydata,abundance>0), aes(x=lon,y=lat, size=abundance,color=season)) + #,
+  #color="orange") +
+  scale_size_area() +
+  facet_wrap(~comname)
+
 
 
