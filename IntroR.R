@@ -85,8 +85,13 @@ devtools::install_github("dkahle/ggmap", ref = "tidyup")
 register_google("paste your key here in quotations")
 # proceed as before
 mymap <- get_map(mylocation, zoom = 8, crop = FALSE, maptype = "satellite")
-ggmap(mymap)
+ggmap(mymap)  #Google Map
 
+#add in the data
+ggmap(mymap) +
+  geom_point(data = no_zeroes, aes(x=lon,y=lat, size=abundance,color=season)) +
+  scale_size_area() +
+  facet_wrap(~comname)
 
 
 
