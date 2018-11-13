@@ -84,7 +84,7 @@ devtools::install_github("dkahle/ggmap", ref = "tidyup")
 # once you have a key you can then run:
 register_google("paste your key here in quotations")
 # proceed as before
-mymap <- get_map(mylocation, zoom = 8, crop = FALSE)
+mymap <- get_map(mylocation, zoom = 8, crop = FALSE, maptype = "satellite")
 ggmap(mymap)
 
 
