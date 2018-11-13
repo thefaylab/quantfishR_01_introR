@@ -16,5 +16,5 @@ library(tidyverse)
 grouped_data <- group_by(mydata, year, season, comname)
 mean_abundance <- summarise(grouped_data, means=mean(abundance))
 
-ggplot(mean_abundance, aes(x=year, y=means)) +
+ggplot(mean_abundance, aes(x=year, y=means, color=season)) +
   geom_point()
