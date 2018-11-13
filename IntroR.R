@@ -55,15 +55,21 @@ ggmap(mymap)
 ggmap(mymap) +
   geom_point(data = mydata, aes(x=lon,y=lat, size=abundance,color=season)) +
   scale_size_area()
-#like before this puts all the data on one map
-# add species to separate panels
 
+#like before this puts all the data on one map
+# add species to separate panels, using facets, just like we did with the scatterplots
 ggmap(mymap) +
   geom_point(data = mydata, aes(x=lon,y=lat, size=abundance,color=season)) +
   scale_size_area() +
   facet_wrap(~comname)
 
-  
+# These plots include all the tows where we caught none of a particular species (abundance = 0)
+# Let's remove the zeroes
+ggmap(mymap) +
+  geom_point(data = mydata, aes(x=lon,y=lat, size=abundance,color=season)) +
+  scale_size_area() +
+  facet_wrap(~comname)
+
     geom_point(data = filter(mydata,abundance>0), aes(x=lon,y=lat, size=abundance,color=season)) + #,
   #color="orange") +
   
