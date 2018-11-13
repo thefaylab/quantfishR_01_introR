@@ -87,12 +87,8 @@ register_google("paste your key here in quotations")
 mymap <- get_map(mylocation, zoom = 8, crop = FALSE, maptype = "satellite")
 ggmap(mymap)  #Google Map
 
-#add in the data
+#add in the data just like when we were using stamen
 ggmap(mymap) +
   geom_point(data = no_zeroes, aes(x=lon,y=lat, size=abundance,color=season)) +
   scale_size_area() +
   facet_wrap(~comname)
-
-
-
-If 
