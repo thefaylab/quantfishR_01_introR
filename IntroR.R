@@ -1,8 +1,10 @@
 # Introduction to R workshop  Nov 13 2018
+# Gavin Fay
 
 2 + 2
 
 # read data into R
+# reading from an Excel file
 install.packages('readxl')
 library(readxl)
 
@@ -11,14 +13,30 @@ mydata
 
 summary(mydata)
 
+## do some data analysis
+# load in the tidyverse - set of packages that work together
 library(tidyverse)
 
+# want to look at mean abundance by year, season, and species
+# Tell R that there is a grouping structure to our data
+# All functions work the same: name is an action verb saying what the function does
+# - 1st argument is the data set, subsequent arguments relate to the particular function
+# group_by() tells R that we are going to want to do things to a particular grouping structure
 grouped_data <- group_by(mydata, year, season, comname)
-mean_abundance <- summarise(grouped_data, means=mean(abundance))
 
-ggplot(mean_abundance, aes(x=year, y=means, color=season)) +
-  geom_point() +
-  facet_wrap(~comname, scales = "free") +
-  geom_smooth(method="loess")
+# summarise() does a function for each level of the grouping structure
+# this is exactly like a pivot table
+# here we creat a new variable 'means' that contains the mean abundance
+mean_abundance <- summarise(grouped_data, means=mean(abundance))
+mean_abundance <- summarise(grouped_data, means=mean(abundance, na.rm = TRUE))  #this version removes the NAs from the mean function.
+
+# print our new summarised object
+mean_abundance
+
+## plot the mean abundances over time, by season (color) & species (panels)
+ggplot(mean_abundance, aes(x=year, y=means, color=season)) +  #sets up plot, maps variables to plot aesthetics
+  geom_point() +  #produces the scatterplot
+  facet_wrap(~comname, scales = "free") +   #adds panels (scales argument makes y axes separate by species)
+  geom_smooth(method="loess")   #adds the smoother/trend line
 
 
