@@ -11,6 +11,8 @@ mydata
 
 summary(mydata)
 
+library(tidyverse)
+
 group_by(mydata, year, season, comname)
 
 
