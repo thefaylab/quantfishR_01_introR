@@ -13,7 +13,7 @@ summary(mydata)
 
 library(tidyverse)
 
-group_by(mydata, year, season, comname)
+grouped_data <- group_by(mydata, year, season, comname)
 
 
 
