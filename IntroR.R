@@ -2,3 +2,5 @@
 
 2 + 2
 
+# read data into R
+library(readxl)
