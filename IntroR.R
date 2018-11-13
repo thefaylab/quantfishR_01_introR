@@ -64,9 +64,10 @@ ggmap(mymap) +
   facet_wrap(~comname)
 
 # These plots include all the tows where we caught none of a particular species (abundance = 0)
-# Let's remove the zeroes
+# Let's remove the zeroes by changing the data we pass to geom_point()
+nozeroes <- filter(mydata, abundance > 0)
 ggmap(mymap) +
-  geom_point(data = mydata, aes(x=lon,y=lat, size=abundance,color=season)) +
+  geom_point(data = filtermydata, aes(x=lon,y=lat, size=abundance,color=season)) +
   scale_size_area() +
   facet_wrap(~comname)
 
