@@ -83,8 +83,8 @@ if(!requireNamespace("devtools")) install.packages("devtools")
 devtools::install_github("dkahle/ggmap", ref = "tidyup")
 # once you have a key you can then run:
 register_google("paste your key here in quotations")
-nb <- geocode("New Bedford")  #corners of a box, lon & lat bottom-left, lon & lat top-right
-mymap <- get_stamenmap(mylocation, zoom = 9, crop = FALSE)
+# proceed as before
+mymap <- get_map(mylocation, zoom = 8, crop = FALSE)
 ggmap(mymap)
 
 
