@@ -18,6 +18,6 @@ mean_abundance <- summarise(grouped_data, means=mean(abundance))
 
 ggplot(mean_abundance, aes(x=year, y=means, color=season)) +
   geom_point() +
-  facet_wrap(~comname)
+  facet_wrap(~comname, scales = "free")
 
 
