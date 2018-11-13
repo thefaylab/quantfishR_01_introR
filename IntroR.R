@@ -40,7 +40,10 @@ ggplot(mean_abundance, aes(x=year, y=means, color=season)) +  #sets up plot, map
   geom_smooth(method="loess")   #adds the smoother/trend line
 
 
+
+###############################
 ## map the abundance of species
+###############################
 
 # use the library 'ggmap'
 library(ggmap)
@@ -70,3 +73,21 @@ ggmap(mymap) +
   geom_point(data = no_zeroes, aes(x=lon,y=lat, size=abundance,color=season)) +
   scale_size_area() +
   facet_wrap(~comname)
+
+# Doing the above with Google Earth Maps
+# Google recently changed the way you query their API, which makes doing ggmap over GoogleMaps (previously super easy) a little more tricky - you have to register (which is free, but you need to enable billing by entering a credit card), to obtain a key. If all you needed was to register I would give you my key.
+# It's pretty easy and only takes a couple of minutes to do:
+# https://developers.google.com/maps/documentation/geocoding/usage-and-billing
+# it helps to use a newer version of ggmap
+if(!requireNamespace("devtools")) install.packages("devtools")
+devtools::install_github("dkahle/ggmap", ref = "tidyup")
+# once you have a key you can then run:
+register_google("paste your key here in quotations")
+nb <- geocode("New Bedford")  #corners of a box, lon & lat bottom-left, lon & lat top-right
+mymap <- get_stamenmap(mylocation, zoom = 9, crop = FALSE)
+ggmap(mymap)
+
+
+
+
+If 
