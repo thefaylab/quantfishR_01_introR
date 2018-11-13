@@ -9,3 +9,9 @@ library(readxl)
 mydata <- read_xlsx("neus_bts.xlsx","bts", na = "NA")
 mydata
 
+summary(mydata)
+
+group_by(mydata, year, season, comname)
+
+
+
