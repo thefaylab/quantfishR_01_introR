@@ -14,6 +14,6 @@ summary(mydata)
 library(tidyverse)
 
 grouped_data <- group_by(mydata, year, season, comname)
-
+mean_abundance <- summarise(grouped_data, mean(abundance))
 
 
