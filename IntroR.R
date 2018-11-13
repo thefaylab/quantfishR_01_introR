@@ -39,6 +39,7 @@ ggplot(mean_abundance, aes(x=year, y=means, color=season)) +  #sets up plot, map
   facet_wrap(~comname, scales = "free") +   #adds panels (scales argument makes y axes separate by species)
   geom_smooth(method="loess")   #adds the smoother/trend line
 
+
 ## map the abundance of species
 
 # use the library 'ggmap'
@@ -52,13 +53,20 @@ ggmap(mymap)
 
 # now add the data
 ggmap(mymap) +
-  geom_point(data = mydata, aes(x=lon,y=lat, size=abundance,color=season)) 
+  geom_point(data = mydata, aes(x=lon,y=lat, size=abundance,color=season)) +
+  scale_size_area()
+#like before this puts all the data on one map
+# add species to separate panels
 
-
-  geom_point(data = filter(mydata,abundance>0), aes(x=lon,y=lat, size=abundance,color=season)) + #,
-  #color="orange") +
+ggmap(mymap) +
+  geom_point(data = mydata, aes(x=lon,y=lat, size=abundance,color=season)) +
   scale_size_area() +
   facet_wrap(~comname)
+
+  
+    geom_point(data = filter(mydata,abundance>0), aes(x=lon,y=lat, size=abundance,color=season)) + #,
+  #color="orange") +
+  
 
 
 
