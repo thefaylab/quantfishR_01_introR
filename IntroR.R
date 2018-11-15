@@ -3,10 +3,11 @@
 ##
 
 # load packages we will use
-# if not on the cloud, need to run the following lines first:
+# if not on the cloud, need to run the following lines first (note the default version of ggmap is out of date so we install from a different location)
 # install.packages('readxl')
 # install.packages('tidyverse')
-# install.packages('ggmap')
+# if(!requireNamespace("devtools")) install.packages("devtools")
+# devtools::install_github("dkahle/ggmap", ref = "tidyup")
 library(readxl)
 library(tidyverse)
 library(ggmap)
@@ -16,7 +17,7 @@ library(ggmap)
 
 # read data into R
 # reading from an Excel file
-install.packages('readxl')
+#install.packages('readxl')
 
 mydata <- read_xlsx("neus_bts.xlsx","bts", na = "NA")
 mydata
