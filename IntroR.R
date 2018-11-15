@@ -1,21 +1,30 @@
 # Introduction to R workshop  Nov 13 2018
 # Gavin Fay
+##
 
+# load packages we will use
+# if not on the cloud, need to run the following lines first:
+# install.packages('readxl')
+# install.packages('tidyverse')
+# install.packages('ggmap')
+library(readxl)
+library(tidyverse)
+library(ggmap)
+
+#calculator
 2 + 2
 
 # read data into R
 # reading from an Excel file
 install.packages('readxl')
-library(readxl)
 
 mydata <- read_xlsx("neus_bts.xlsx","bts", na = "NA")
 mydata
 
-summary(mydata)
 
 ## do some data analysis
 # load in the tidyverse - set of packages that work together
-library(tidyverse)
+#library(tidyverse)
 
 # want to look at mean abundance by year, season, and species
 # Tell R that there is a grouping structure to our data
@@ -46,7 +55,7 @@ ggplot(mean_abundance, aes(x=year, y=means, color=season)) +  #sets up plot, map
 ###############################
 
 # use the library 'ggmap'
-library(ggmap)
+#library(ggmap)
 
 # we'll use stamenmap - which is an alternative to google maps (google changed access to their API recently)
 # define the area we want to obtain a map for
